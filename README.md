@@ -17,7 +17,7 @@ tar xzvf test.tar.gz
 2.Run the following command:
 
 ~~~BASH
-docker run -v $(pwd)/test/input:/cami/test  -v $(pwd)/test/output:/output  pbelmann/genome_fraction  /project/bar_chart.r /cami/test/commits_info.tsv combined_reference/transposed_report.tsv
+docker run -v $(pwd)/test/input:/cami/test  -v $(pwd)/test/output:/output  pbelmann/genome-fraction-bar-chart  /project/bar_chart.r /cami/test/commits_info.tsv combined_reference/transposed_report.tsv
 ~~~
 
 The output should contain the following files
