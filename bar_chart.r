@@ -12,6 +12,7 @@ inputDataframe = cbind.data.frame(read.delim(path, header = TRUE, stringsAsFacto
                                                FALSE))
 inputDataframe$path <- file.path(inputDataframe$path, postfix)
 
+
 fillDataset <- function(paths) {
    for (file in paths) {
             if (!exists("dataset")) {
@@ -33,10 +34,10 @@ fillDataset <- function(paths) {
 
 total <- merge(inputDataframe, fillDataset(inputDataframe$path), by = c("path"))
 total[is.na(total)] <- 0
+total$Genome.fraction.... <- factor(total$Genome.fraction...., levels=sort(total$Genome.fraction....,  decreasing=TRUE))
 
-p <- ggplot(data=total, aes(x=name, y=Genome.fraction...., fill=name)) +
-    geom_bar(stat="identity") + coord_flip()
-p <- ggplotly(p)
+p <- ggplot(data=total, aes(x=name, y=Genome.fraction...., fill=name)) +    geom_bar(stat="identity") + coord_flip()
+pl <- ggplotly(p)
 
-htmlwidgets::saveWidget(p,'/output/out.html')
+htmlwidgets::saveWidget(pl,'/output/out.html')
 system("cp /project/biobox.yaml /output")
